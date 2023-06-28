@@ -1,0 +1,14 @@
+params:
+  epochs: 30
+  batch_size: 32
+  no_classes: 10
+  validation_data_size: 5000
+  loss_function: sparse_categorical_crossentropy
+  metrics: accuracy
+  optimizer: SGD
+
+artifacts:
+  artifact_dir: artifacts
+  model_dir: model
+  plots_dir: plots
+  checkpoints_dir: checkpoints
