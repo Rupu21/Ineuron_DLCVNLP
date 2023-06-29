@@ -6,7 +6,7 @@ from src.utils.data_mgmt import get_data
 from src.utils.model import create_model, save_model
 from src.utils.plot import save_plot
 from predict import predict
-
+from src.utils.callback import callback
 
 
 def training(config_path):
@@ -30,9 +30,11 @@ def training(config_path):
     # Creating Model
     model = create_model(LOSS_FUNCTION, OPTIMIZER, METRICS, NUM_CLASSES)
 
+    # Creating Callback/logs
+    CALL_BACK = callback(config, X_train)
     # Training data to model
     history = model.fit(X_train, y_train, epochs=EPOCHS,
-                        validation_data=VALIDATION_SET)
+                        validation_data=VALIDATION_SET, callbacks=CALL_BACK)
     # Saving Model
     model_dir_path = os.path.join(artifact_dir, model_dir)
     os.makedirs(model_dir_path, exist_ok=True)
